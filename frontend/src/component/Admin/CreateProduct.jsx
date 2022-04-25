@@ -1,42 +1,44 @@
-import React, { Fragment, useEffect, useState } from "react";
-import "./newProduct.css";
-import { useSelector, useDispatch } from "react-redux";
-import { clearErrors, createProduct } from "../../actions/ProductActions";
-import { Button } from "@material-ui/core";
-import MetaData from "../../more/Metadata";
-import AccountTreeIcon from "@material-ui/icons/AccountTree";
-import DescriptionIcon from "@material-ui/icons/Description";
-import StorageIcon from "@material-ui/icons/Storage";
-import SpellcheckIcon from "@material-ui/icons/Spellcheck";
-import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
-import DiscountIcon from "@material-ui/icons/LocalOffer";
-import SideBar from "./Sidebar";
-import { NEW_PRODUCT_RESET } from "../../constans/ProductConstans";
+import React, { Fragment, useEffect, useState } from 'react';
+import './newProduct.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { clearErrors, createProduct } from '../../actions/ProductActions';
+import { Button } from '@material-ui/core';
+import MetaData from '../../more/Metadata';
+import AccountTreeIcon from '@material-ui/icons/AccountTree';
+import DescriptionIcon from '@material-ui/icons/Description';
+import StorageIcon from '@material-ui/icons/Storage';
+import SpellcheckIcon from '@material-ui/icons/Spellcheck';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import DiscountIcon from '@material-ui/icons/LocalOffer';
+import SideBar from './Sidebar';
+import { NEW_PRODUCT_RESET } from '../../constans/ProductConstans';
 import { ToastContainer, toast } from 'react-toastify';
 
 const CreateProduct = ({ history }) => {
   const dispatch = useDispatch();
 
-  const { loading, error, success } = useSelector((state) => state.createProduct);
+  const { loading, error, success } = useSelector(
+    (state) => state.createProduct
+  );
 
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
   const [price, setPrice] = useState(0);
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
+  const [description, setDescription] = useState('');
+  const [category, setCategory] = useState('');
   const [Stock, setStock] = useState(0);
-  const [offerPrice, setOfferPrice] = useState("");
+  const [offerPrice, setOfferPrice] = useState('');
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
 
   const categories = [
-    "Personal",
-    "cloth",
-    "Ladies Cloth",
-    "Gift",
-    "Food",
-    "Electronics",
-    "Sports",
-    "Others"
+    'Appliances',
+    'Mens Fashion',
+    'Ladies Fashion',
+    'Gift',
+    'Food',
+    'Electronics',
+    'Sports',
+    'Video Games'
   ];
 
   useEffect(() => {
@@ -46,8 +48,8 @@ const CreateProduct = ({ history }) => {
     }
 
     if (success) {
-      toast.success("Product Created Successfully");
-      history.push("/dashboard");
+      toast.success('Product Created Successfully');
+      history.push('/dashboard');
       dispatch({ type: NEW_PRODUCT_RESET });
     }
   }, [dispatch, alert, error, history, success]);
@@ -57,15 +59,15 @@ const CreateProduct = ({ history }) => {
 
     const myForm = new FormData();
 
-    myForm.set("name", name);
-    myForm.set("price", price);
-    myForm.set("offerPrice", offerPrice);
-    myForm.set("description", description);
-    myForm.set("category", category);
-    myForm.set("Stock", Stock);
+    myForm.set('name', name);
+    myForm.set('price', price);
+    myForm.set('offerPrice', offerPrice);
+    myForm.set('description', description);
+    myForm.set('category', category);
+    myForm.set('Stock', Stock);
 
     images.forEach((image) => {
-      myForm.append("images", image);
+      myForm.append('images', image);
     });
     dispatch(createProduct(myForm));
   };
@@ -112,7 +114,7 @@ const CreateProduct = ({ history }) => {
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
-            
+
             <div>
               <DiscountIcon />
               <input
@@ -191,7 +193,7 @@ const CreateProduct = ({ history }) => {
           </form>
         </div>
       </div>
-      <ToastContainer 
+      <ToastContainer
         position="bottom-center"
         autoClose={5000}
         hideProgressBar={false}
@@ -201,7 +203,7 @@ const CreateProduct = ({ history }) => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        />
+      />
     </Fragment>
   );
 };

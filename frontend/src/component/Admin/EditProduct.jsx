@@ -1,22 +1,25 @@
-import React, { Fragment, useEffect, useState } from "react";
-import "./newProduct.css";
-import { useSelector, useDispatch } from "react-redux";
-import { clearErrors, updateProduct, getProductDetails } from "../../actions/ProductActions";
-import { Button } from "@material-ui/core";
-import MetaData from "../../more/Metadata";
-import AccountTreeIcon from "@material-ui/icons/AccountTree";
-import DescriptionIcon from "@material-ui/icons/Description";
-import StorageIcon from "@material-ui/icons/Storage";
-import SpellcheckIcon from "@material-ui/icons/Spellcheck";
-import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
-    // eslint-disable-next-line
-import DiscountIcon from "@material-ui/icons/LocalOffer";
-import SideBar from "./Sidebar";
-import { UPDATE_PRODUCT_RESET } from "../../constans/ProductConstans";
+import React, { Fragment, useEffect, useState } from 'react';
+import './newProduct.css';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  clearErrors,
+  updateProduct,
+  getProductDetails
+} from '../../actions/ProductActions';
+import { Button } from '@material-ui/core';
+import MetaData from '../../more/Metadata';
+import AccountTreeIcon from '@material-ui/icons/AccountTree';
+import DescriptionIcon from '@material-ui/icons/Description';
+import StorageIcon from '@material-ui/icons/Storage';
+import SpellcheckIcon from '@material-ui/icons/Spellcheck';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+// eslint-disable-next-line
+import DiscountIcon from '@material-ui/icons/LocalOffer';
+import SideBar from './Sidebar';
+import { UPDATE_PRODUCT_RESET } from '../../constans/ProductConstans';
 import { ToastContainer, toast } from 'react-toastify';
 
 const UpdateProduct = ({ history, match }) => {
-
   const dispatch = useDispatch();
 
   const { error, product } = useSelector((state) => state.productDetails);
@@ -24,29 +27,29 @@ const UpdateProduct = ({ history, match }) => {
   const {
     loading,
     error: updateError,
-    isUpdated,
+    isUpdated
   } = useSelector((state) => state.deleteProduct);
 
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
   const [price, setPrice] = useState(0);
-      // eslint-disable-next-line
-  const [offerPrice, setOfferPrice] = useState("");
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
+  // eslint-disable-next-line
+  const [offerPrice, setOfferPrice] = useState('');
+  const [description, setDescription] = useState('');
+  const [category, setCategory] = useState('');
   const [Stock, setStock] = useState(0);
   const [images, setImages] = useState([]);
   const [oldImages, setOldImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
 
   const categories = [
-    "Personal",
-    "cloth",
-    "Ladies Cloth",
-    "Shoes",
-    "Food",
-    "Electronics",
-    "Sports",
-    "Others"
+    'Appliances',
+    'Mens Fashion',
+    'Ladies Fashion',
+    'Gift',
+    'Food',
+    'Electronics',
+    'Sports',
+    'Video Games'
   ];
 
   const productId = match.params.id;
@@ -73,8 +76,8 @@ const UpdateProduct = ({ history, match }) => {
     }
 
     if (isUpdated) {
-      toast.success("Product Updated Successfully");
-      history.push("/admin/products");
+      toast.success('Product Updated Successfully');
+      history.push('/admin/products');
       dispatch({ type: UPDATE_PRODUCT_RESET });
     }
   }, [
@@ -85,23 +88,23 @@ const UpdateProduct = ({ history, match }) => {
     isUpdated,
     productId,
     product,
-    updateError,
+    updateError
   ]);
 
-  const updateProductSubmitHandler  = (e) => {
+  const updateProductSubmitHandler = (e) => {
     e.preventDefault();
 
     const myForm = new FormData();
 
-    myForm.set("name", name);
-    myForm.set("price", price);
-    myForm.set("offerPrice", offerPrice);
-    myForm.set("description", description);
-    myForm.set("category", category);
-    myForm.set("Stock", Stock);
+    myForm.set('name', name);
+    myForm.set('price', price);
+    myForm.set('offerPrice', offerPrice);
+    myForm.set('description', description);
+    myForm.set('category', category);
+    myForm.set('Stock', Stock);
 
     images.forEach((image) => {
-      myForm.append("images", image);
+      myForm.append('images', image);
     });
     dispatch(updateProduct(productId, myForm));
   };
@@ -126,7 +129,6 @@ const UpdateProduct = ({ history, match }) => {
       reader.readAsDataURL(file);
     });
   };
-
 
   return (
     <Fragment>
@@ -241,7 +243,7 @@ const UpdateProduct = ({ history, match }) => {
           </form>
         </div>
       </div>
-      <ToastContainer 
+      <ToastContainer
         position="bottom-center"
         autoClose={5000}
         hideProgressBar={false}
@@ -251,7 +253,7 @@ const UpdateProduct = ({ history, match }) => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        />
+      />
     </Fragment>
   );
 };

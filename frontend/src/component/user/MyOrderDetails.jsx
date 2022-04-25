@@ -1,16 +1,18 @@
-import React, { useEffect } from "react";
-import "./orderDetails.css";
-import { useSelector, useDispatch } from "react-redux";
-import MetaData from "../../more/Metadata";
-import { Link } from "react-router-dom";
-import { Typography } from "@material-ui/core";
-import { getOrderDetails, clearErrors } from "../../actions/OrderAction";
-import { useAlert } from "react-alert";
-import Loading from "../../more/Loader";
-import BottomTab from "../../more/BottomTab";
+import React, { useEffect } from 'react';
+import './orderDetails.css';
+import { useSelector, useDispatch } from 'react-redux';
+import MetaData from '../../more/Metadata';
+import { Link } from 'react-router-dom';
+import { Typography } from '@material-ui/core';
+import { getOrderDetails, clearErrors } from '../../actions/OrderAction';
+import { useAlert } from 'react-alert';
+import Loading from '../../more/Loader';
+import BottomTab from '../../more/BottomTab';
 
 const MyOrderDetails = ({ match }) => {
-  const { order, error, loading } = useSelector((state) => state.myOrderDetails);
+  const { order, error, loading } = useSelector(
+    (state) => state.myOrderDetails
+  );
 
   const dispatch = useDispatch();
 
@@ -59,22 +61,23 @@ const MyOrderDetails = ({ match }) => {
                 <div>
                   <p
                     className={
-                      order.orderStatus === "Delivered"
-                        ? "greenColor"
-                        : "redColor"
+                      order.orderStatus === 'Delivered'
+                        ? 'greenColor'
+                        : 'redColor'
                     }
-                  >                  
-                  </p>
-                  <p style={{
-                      color:"green"
-                  }}>
-                  PAID
+                  ></p>
+                  <p
+                    style={{
+                      color: 'green'
+                    }}
+                  >
+                    PAID
                   </p>
                 </div>
 
                 <div>
                   <p>Amount:</p>
-                  <span>$ {order.totalPrice && order.totalPrice}</span>
+                  <span>Rs. {order.totalPrice && order.totalPrice}</span>
                 </div>
               </div>
 
@@ -83,9 +86,9 @@ const MyOrderDetails = ({ match }) => {
                 <div>
                   <p
                     className={
-                      order.orderStatus && order.orderStatus === "Delivered"
-                        ? "greenColor"
-                        : "redColor"
+                      order.orderStatus && order.orderStatus === 'Delivered'
+                        ? 'greenColor'
+                        : 'redColor'
                     }
                   >
                     {order.orderStatus && order.orderStatus}
@@ -97,22 +100,19 @@ const MyOrderDetails = ({ match }) => {
             <div className="orderDetailsCartItems">
               <Typography>Order Items:</Typography>
               <div className="orderDetailsCartItemsContainer">
-
                 {order.orderItems &&
                   order.orderItems.map((item) => (
                     <div key={item.Offer}>
                       <img src={item.image} alt="Product" />
                       <Link to={`/product/${item.Offer}`}>
                         {item.name}
-                      </Link>{" "}
+                      </Link>{' '}
                       <span>
-                        {item.quantity} X ${item.price} ={" "}
-                        <b>${item.price * item.quantity}</b>
+                        {item.quantity} X Rs.{item.price} ={' '}
+                        <b>Rs.{item.price * item.quantity}</b>
                       </span>
                     </div>
                   ))}
-
-
               </div>
             </div>
           </div>

@@ -1,12 +1,12 @@
-import React from "react";
-import "./Cart.css";
-import { useSelector, useDispatch } from "react-redux";
-import { addItemsToCart, removeItemsFromCart } from "../../actions/CartAction";
-import { Typography } from "@material-ui/core";
-import RemoveShoppingCartIcon from "@material-ui/icons/RemoveShoppingCart";
-import { Link } from "react-router-dom";
-import CartItemCard from "./CartItemCard.js";
-import BottomTab from "../../more/BottomTab";
+import React from 'react';
+import './Cart.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { addItemsToCart, removeItemsFromCart } from '../../actions/CartAction';
+import { Typography } from '@material-ui/core';
+import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart';
+import { Link } from 'react-router-dom';
+import CartItemCard from './CartItemCard.js';
+import BottomTab from '../../more/BottomTab';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -25,7 +25,7 @@ const Cart = ({ history }) => {
   const increaseQuantity = (id, quantity, stock) => {
     const newQty = quantity + 1;
     if (stock <= quantity) {
-      return toast.error("Product Stock Limited");
+      return toast.error('Product Stock Limited');
     }
     dispatch(addItemsToCart(id, newQty));
   };
@@ -43,7 +43,7 @@ const Cart = ({ history }) => {
   };
 
   const checkoutHandler = () => {
-    history.push("/login?redirect=shipping");
+    history.push('/login?redirect=shipping');
   };
 
   return (
@@ -89,7 +89,7 @@ const Cart = ({ history }) => {
                       +
                     </button>
                   </div>
-                  <p className="cartSubtotal">{`$${
+                  <p className="cartSubtotal">{`Rs.${
                     item.price * item.quantity
                   }`}</p>
                 </div>
