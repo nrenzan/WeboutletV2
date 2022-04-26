@@ -10,7 +10,17 @@ const Footer = () => {
     >
       {/* Footer 1st part */}
       <div className="footer1st">
-        <img src={WebOutlet} style={{ cursor: 'pointer' }} />
+        <img
+          src={WebOutlet}
+          alt=""
+          className="logo"
+          style={{
+            width: '150px',
+            height: '100px',
+            objectFit: 'contain',
+            cursor: 'pointer'
+          }}
+        />
         <div className="location flex py__10">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -80,13 +90,13 @@ const Footer = () => {
             <Link to="/creator">
               <img
                 src="http://wp.alithemes.com/html/nest/demo/assets/imgs/theme/app-store.jpg"
-                style={{ width: '150px', margin: '10px' }}
+                style={{ width: '100px', margin: '10px' }}
               />
             </Link>
             <Link to="/creator">
               <img
                 src="http://wp.alithemes.com/html/nest/demo/assets/imgs/theme/google-play.jpg"
-                style={{ width: '150px', margin: '10px' }}
+                style={{ width: '100px', margin: '10px' }}
               />
             </Link>
           </div>
