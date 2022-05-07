@@ -103,12 +103,6 @@ const Products = ({ match }) => {
                     </li>
                   ))}
                 </ul>
-                <Typography style={{ fontSize: '1.2vmax', padding: '5px' }}>
-                  QUICK LINKS
-                </Typography>
-                <li className="category-link">My Carts</li>
-                <li className="category-link">Favourites Items</li>
-                <li className="category-link">Go to Checkout</li>
               </div>
 
               {products.length === 0 ? (
